@@ -26,11 +26,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            width: 70%; /* Make the input boxes smaller */
+            padding: 8px;
+            margin: 10px auto;
             border-radius: 5px;
             border: 1px solid #ccc;
+            display: block; /* Center the input boxes */
         }
         button {
             padding: 10px 20px;
@@ -51,12 +52,18 @@
             font-size: 24px;
             margin-top: 20px;
         }
+        img {
+            width: 100%; /* Make the image full width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove bottom space */
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png" alt="Truck Garage Logo" style="width: 100%; height: auto; margin-bottom: 20px;">
+        <img src="https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png" alt="Truck Garage Logo">
 
         <label for="hours">ساعات إنجاز العمل</label>
         <input type="number" id="hours" placeholder="Enter hours of work">
