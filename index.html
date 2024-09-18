@@ -96,7 +96,7 @@
             // Calculate costs
             const laborCost = hourlyRate * hours;
             const totalCost = laborCost + materialCost;
-            const profit = totalCost * fixedProfitMargin;
+            const profit = laborCost * fixedProfitMargin; // Profit based only on labor cost
             const totalPrice = totalCost + profit;
 
             // Display cost before profit, total price with profit, and pure profit
