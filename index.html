@@ -47,8 +47,8 @@
         #result {
             margin-top: 20px;
         }
-        #cost-info, #total-info {
-            font-size: 30px; /* Larger text size for cost and total price */
+        #cost-info, #total-info, #profit-info {
+            font-size: 30px; /* Larger text size for cost, total price, and profit */
             font-weight: bold; /* Make the text bold */
             margin-top: 20px;
         }
@@ -76,6 +76,7 @@
         <div id="result">
             <div id="cost-info"></div> <!-- Cost before profit -->
             <div id="total-info"></div> <!-- Price with profit -->
+            <div id="profit-info"></div> <!-- Pure profit -->
         </div>
     </div>
 
@@ -98,9 +99,10 @@
             const profit = totalCost * fixedProfitMargin;
             const totalPrice = totalCost + profit;
 
-            // Display cost before profit and total price with profit
-            document.getElementById('cost-info').innerText = `التكلفة الإجمالية  : QR${totalCost.toFixed(2)}`;
-            document.getElementById('total-info').innerText = `السعر الإجمالي  : QR${totalPrice.toFixed(2)}`;
+            // Display cost before profit, total price with profit, and pure profit
+            document.getElementById('cost-info').innerText = `التكلفة الإجمالية: QR${totalCost.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `السعر الإجمالي: QR${totalPrice.toFixed(2)}`;
+            document.getElementById('profit-info').innerText = `الربح الصافي: QR${profit.toFixed(2)}`;
         }
     </script>
 
