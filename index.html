@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: right; /* Align text to the right */
             padding: 0;
             margin: 0;
             background-color: #f4f4f4; /* White background */
@@ -14,6 +15,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            direction: rtl; /* Set direction to RTL for Arabic */
         }
         .container {
             max-width: 600px;
@@ -22,7 +24,6 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: right; /* Align text to the right */
         }
         input[type="number"] {
             width: 70%; /* Make the input boxes smaller */
@@ -31,7 +32,6 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             display: block; /* Center the input boxes */
-            direction: rtl; /* Ensure numbers are entered right to left */
         }
         button {
             padding: 10px 20px;
@@ -41,21 +41,18 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: block;
-            margin: 20px auto 0 auto;
         }
         button:hover {
             background-color: #0056b3;
         }
         #result {
             margin-top: 20px;
-            text-align: left; /* Align result text to the left */
         }
         #cost-info, #total-info, #profit-info {
             font-size: 30px; /* Larger text size for cost, total price, and profit */
             font-weight: bold; /* Make the text bold */
             margin-top: 20px;
-            text-align: left; /* Ensure text is left-aligned */
+            text-align: left; /* Align text to the left */
         }
         img {
             width: 100%; /* Make the image full width */
@@ -105,9 +102,9 @@
             const totalPrice = totalCost + profit;
 
             // Display cost before profit, total price with profit, and pure profit
-            document.getElementById('cost-info').innerText = `التكلفة الإجمالية: ${totalCost.toFixed(2)} QR`;
-            document.getElementById('total-info').innerText = `السعر الإجمالي: ${totalPrice.toFixed(2)} QR`;
-            document.getElementById('profit-info').innerText = `الربح الصافي: ${profit.toFixed(2)} QR`;
+            document.getElementById('cost-info').innerText = `QR ${totalCost.toFixed(2)} :التكلفة الإجمالية`;
+            document.getElementById('total-info').innerText = `QR ${totalPrice.toFixed(2)} :السعر الإجمالي`;
+            document.getElementById('profit-info').innerText = `QR ${profit.toFixed(2)} :الربح الصافي`;
         }
     </script>
 
