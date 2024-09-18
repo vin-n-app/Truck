@@ -3,35 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truck Garage</title>
+    <title>Maintenance & Repair Scheduler</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 0;
             margin: 0;
-            background-color: #f4f4f4; /* White background */
-            min-height: 100vh;
+            padding: 0;
+            background-color: #f4f4f4;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            direction: rtl; /* Set direction to RTL for Arabic */
+            min-height: 100vh;
         }
-        .container {
-            max-width: 600px;
+        header {
+            background-color: #007BFF;
+            color: white;
             width: 100%;
             padding: 20px;
+            text-align: center;
+        }
+        .container {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center the labels and input fields */
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
         }
-        input[type="number"] {
-            width: 70%; /* Make the input boxes smaller */
-            padding: 8px;
-            margin: 10px auto;
-            border-radius: 5px;
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
             border: 1px solid #ccc;
-            display: block; /* Center the input boxes */
+            border-radius: 5px;
+            margin: 10px 0;
         }
         button {
             padding: 10px 20px;
@@ -41,73 +58,68 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
         }
-        #result {
+        .subscription-info {
             margin-top: 20px;
-            text-align: right; /* Align result to the right */
-        }
-        #cost-info, #total-info, #profit-info {
-            font-size: 26px; /* Slightly smaller font size for cost, total price, and profit */
-            font-weight: bold; /* Make the text bold */
-            margin-top: 20px;
-        }
-        img {
-            width: 100%; /* Make the image full width */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Remove bottom space */
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png" alt="Truck Garage Logo">
+<header>
+    <h1>Maintenance & Repair Scheduler</h1>
+</header>
 
-        <label for="hours">ساعات إنجاز العمل</label>
-        <input type="number" id="hours" placeholder="Enter hours of work">
+<div class="container">
+    <p>Welcome to the Maintenance & Repair Scheduler. Manage your maintenance schedules, set reminders, and keep track of your service history with ease.</p>
 
-        <label for="material">كلفة المواد</label>
-        <input type="number" id="material" placeholder="Enter material cost">
-
-        <button onclick="calculatePrice()">احسب السعر</button>
-
-        <div id="result">
-            <div id="cost-info"></div> <!-- Cost before profit -->
-            <div id="total-info"></div> <!-- Price with profit -->
-            <div id="profit-info"></div> <!-- Pure profit -->
-        </div>
+    <div class="form-group">
+        <label for="vehicle">Vehicle Name:</label>
+        <input type="text" id="vehicle" placeholder="Enter vehicle name">
+    </div>
+    <div class="form-group">
+        <label for="service-date">Next Service Date:</label>
+        <input type="date" id="service-date">
+    </div>
+    <div class="form-group">
+        <label for="service-type">Type of Service:</label>
+        <select id="service-type">
+            <option value="oil-change">Oil Change</option>
+            <option value="tire-rotation">Tire Rotation</option>
+            <option value="brake-check">Brake Check</option>
+            <option value="general-maintenance">General Maintenance</option>
+        </select>
     </div>
 
-    <script>
-        const hourlyRate = 222; // Fixed hourly rate
-        const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
+    <button onclick="scheduleService()">Schedule Service</button>
 
-        function calculatePrice() {
-            const hours = parseFloat(document.getElementById('hours').value);
-            const materialCost = parseFloat(document.getElementById('material').value);
+    <div class="subscription-info">
+        <p>Subscribe for full access to advanced scheduling features, service reminders, and more!</p>
+        <button onclick="subscribe()">Subscribe Now</button>
+    </div>
+</div>
 
-            if (isNaN(hours) || isNaN(materialCost)) {
-                alert("Please enter valid values.");
-                return;
-            }
+<script>
+    function scheduleService() {
+        const vehicle = document.getElementById('vehicle').value;
+        const serviceDate = document.getElementById('service-date').value;
+        const serviceType = document.getElementById('service-type').value;
 
-            // Calculate costs
-            const laborCost = hourlyRate * hours;
-            const totalCost = laborCost + materialCost;
-            const profit = laborCost * fixedProfitMargin; // Profit based only on labor cost
-            const totalPrice = totalCost + profit;
-
-            // Display cost before profit, total price with profit, and pure profit
-            document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
-            document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
-            document.getElementById('profit-info').innerText = `:الربح الصافي QR ${profit.toFixed(2)}`;
+        if (vehicle && serviceDate && serviceType) {
+            alert(`Service scheduled for ${vehicle} on ${serviceDate} for ${serviceType}.`);
+        } else {
+            alert('Please fill out all fields.');
         }
-    </script>
+    }
+
+    function subscribe() {
+        alert('Redirecting to subscription page...');
+        // Here you would redirect to your subscription page
+    }
+</script>
 
 </body>
 </html>
