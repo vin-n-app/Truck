@@ -113,8 +113,6 @@
     <script>
         const hourlyRate = 222; // Fixed hourly rate
         const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
-        const fixedOverheads = 26000; // Fixed monthly overheads
-        const fixedSalaries = 32000; // Fixed monthly salaries
 
         function addMaterial() {
             const materialList = document.getElementById('materials-list');
@@ -150,7 +148,7 @@
 
             // Calculate costs
             const laborCost = hourlyRate * hours;
-            const totalCost = laborCost + totalMaterialCost + fixedOverheads + fixedSalaries;
+            const totalCost = laborCost + totalMaterialCost;
             const profit = totalCost * fixedProfitMargin; // Profit based on total cost
             const totalPrice = totalCost + profit;
 
