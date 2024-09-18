@@ -44,16 +44,13 @@
         button:hover {
             background-color: #0056b3;
         }
-        h2 {
-            margin-top: 20px;
-        }
         #result {
-            font-size: 24px;
             margin-top: 20px;
         }
         #cost-info, #total-info {
-            font-size: 18px;
-            margin-top: 10px;
+            font-size: 30px; /* Larger text size for cost and total price */
+            font-weight: bold; /* Make the text bold */
+            margin-top: 20px;
         }
         img {
             width: 100%; /* Make the image full width */
@@ -76,9 +73,10 @@
 
         <button onclick="calculatePrice()">احسب السعر</button>
 
-        <h2>السعر الإجمالي</h2>
-        <div id="cost-info"></div> <!-- Cost before profit -->
-        <div id="total-info"></div> <!-- Price with profit -->
+        <div id="result">
+            <div id="cost-info"></div> <!-- Cost before profit -->
+            <div id="total-info"></div> <!-- Price with profit -->
+        </div>
     </div>
 
     <script>
