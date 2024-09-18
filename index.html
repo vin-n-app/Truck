@@ -50,7 +50,7 @@
             margin-top: 20px;
             text-align: right;
         }
-        #cost-info, #total-info, #profit-info {
+        #cost-info, #total-info {
             font-size: 26px;
             font-weight: bold;
             margin-top: 20px;
@@ -118,7 +118,6 @@
         <div id="result">
             <div id="cost-info"></div> <!-- Cost before profit -->
             <div id="total-info"></div> <!-- Price with profit -->
-            <div id="profit-info"></div> <!-- Pure profit -->
         </div>
 
         <div id="receipt" class="receipt">
@@ -126,9 +125,7 @@
             <p id="receipt-hours"></p>
             <p id="receipt-materials"></p>
             <p id="receipt-labor-cost"></p>
-            <p id="receipt-material-cost"></p>
             <p id="receipt-total-cost"></p>
-            <p id="receipt-profit"></p>
             <p id="receipt-total-price"></p>
         </div>
     </div>
@@ -175,22 +172,19 @@
             const profit = totalCost * fixedProfitMargin; // Profit based on total cost
             const totalPrice = totalCost + profit;
 
-            // Display cost before profit, total price with profit, and pure profit
+            // Display cost before profit and total price with profit
             document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
             document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
-            document.getElementById('profit-info').innerText = `:الربح الصافي QR ${profit.toFixed(2)}`;
 
-            // Generate receipt
-            generateReceipt(hours, totalMaterialCost, laborCost, totalCost, profit, totalPrice);
+            // Generate receipt without showing profit
+            generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice);
         }
 
-        function generateReceipt(hours, totalMaterialCost, laborCost, totalCost, profit, totalPrice) {
+        function generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice) {
             document.getElementById('receipt-hours').innerText = `ساعات العمل: ${hours} ساعة`;
             document.getElementById('receipt-materials').innerText = `تكلفة المواد: QR ${totalMaterialCost.toFixed(2)}`;
             document.getElementById('receipt-labor-cost').innerText = `تكلفة العمل: QR ${laborCost.toFixed(2)}`;
-            document.getElementById('receipt-material-cost').innerText = `تكلفة المواد الإجمالية: QR ${totalMaterialCost.toFixed(2)}`;
             document.getElementById('receipt-total-cost').innerText = `التكلفة الإجمالية: QR ${totalCost.toFixed(2)}`;
-            document.getElementById('receipt-profit').innerText = `الربح الصافي: QR ${profit.toFixed(2)}`;
             document.getElementById('receipt-total-price').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
 
             document.getElementById('receipt').style.display = 'block'; // Show the receipt
