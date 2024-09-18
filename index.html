@@ -179,12 +179,6 @@
                 return;
             }
 
-            // Check if there are valid material costs
-            if (totalMaterialCost <= 0) {
-                alert("Please enter at least one valid material cost.");
-                return;
-            }
-
             // Calculate costs
             const laborCost = hourlyRate * hours;
             const laborProfit = laborCost * 0.20; // 20% profit on labor
@@ -224,12 +218,7 @@
                 materialDetails = 'لا توجد تكاليف مواد.\n'; // Message for no material costs
             }
 
-            document.getElementById('receipt-hours').innerText = `ساعات العمل: ${hours} ساعة`;
-            document.getElementById('receipt-materials').innerText = `تكلفة المواد: QR ${totalMaterialCost.toFixed(2)}`;
-            document.getElementById('receipt-labor-cost').innerText = `تكلفة العمل: QR ${laborCost.toFixed(2)} (ربح: QR ${laborProfit.toFixed(2)})`;
-            document.getElementById('receipt-total-price').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
-
-            document.getElementById('receipt').style.display = 'block'; // Show the receipt
+           
         }
     </script>
 
