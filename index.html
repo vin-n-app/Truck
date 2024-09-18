@@ -1,83 +1,237 @@
-function calculatePrice() {
-    const hours = parseFloat(document.getElementById('hours').value);
-    const materialCosts = document.querySelectorAll('.material-cost');
-    let totalMaterialCost = 0;
-    let totalMaterialProfit = 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Shop Pricing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl; /* Set direction to RTL for Arabic */
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the labels and input fields */
+        }
+        input[type="number"] {
+            width: 70%;
+            padding: 8px;
+            margin: 10px auto;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: block;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: right;
+        }
+        #cost-info, #total-info {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .receipt {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .receipt h3 {
+            margin-top: 0;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .materials-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .materials-list div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .materials-list input {
+            width: calc(100% - 60px);
+            margin-right: 10px;
+        }
+        .remove-btn {
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
 
-    materialCosts.forEach(input => {
-        const cost = parseFloat(input.value);
-        if (!isNaN(cost) && cost > 0) {
-            totalMaterialCost += cost;
+    <div class="container">
+        <img src="https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png" alt="Truck Garage Logo">
 
-            // Calculate profit margin based on the cost
-            let profitMargin;
-            if (cost <= 500) {
-                profitMargin = 0.12; // 12%
-            } else if (cost <= 1500) {
-                profitMargin = 0.08; // 8%
-            } else if (cost <= 3000) {
-                profitMargin = 0.05; // 5%
-            } else {
-                profitMargin = 0.03; // 3%
+        <label for="hours">ساعات إنجاز العمل</label>
+        <input type="number" id="hours" placeholder="Enter hours of work">
+
+        <label for="material">تكلفة المواد</label>
+        <div id="materials-list" class="materials-list">
+            <!-- Dynamic material cost inputs will be added here -->
+        </div>
+        <button onclick="addMaterial()">إضافة مادة</button>
+
+        <button onclick="calculatePrice()">احسب السعر</button>
+
+        <div id="result">
+            <div id="cost-info"></div> <!-- Cost before profit -->
+            <div id="total-info"></div> <!-- Price with profit -->
+        </div>
+
+        <div id="receipt" class="receipt">
+            <h3>الفاتورة</h3>
+            <p id="receipt-hours"></p>
+            <p id="receipt-materials"></p>
+            <p id="receipt-labor-cost"></p>
+            <p id="receipt-total-price"></p>
+        </div>
+    </div>
+
+    <script>
+        const hourlyRate = 222; // Fixed hourly rate
+
+        function addMaterial() {
+            const materialList = document.getElementById('materials-list');
+            const materialDiv = document.createElement('div');
+            materialDiv.innerHTML = `
+                <input type="number" class="material-cost" placeholder="Enter material cost">
+                <button class="remove-btn" onclick="removeMaterial(this)">حذف</button>
+            `;
+            materialList.appendChild(materialDiv);
+        }
+
+        function removeMaterial(button) {
+            const materialList = document.getElementById('materials-list');
+            materialList.removeChild(button.parentElement);
+        }
+
+        function calculatePrice() {
+            const hours = parseFloat(document.getElementById('hours').value);
+            const materialCosts = document.querySelectorAll('.material-cost');
+            let totalMaterialCost = 0;
+            let totalMaterialProfit = 0;
+
+            materialCosts.forEach(input => {
+                const cost = parseFloat(input.value);
+                if (!isNaN(cost) && cost > 0) {
+                    totalMaterialCost += cost;
+
+                    // Calculate profit margin based on the cost
+                    let profitMargin;
+                    if (cost <= 500) {
+                        profitMargin = 0.12; // 12%
+                    } else if (cost <= 1500) {
+                        profitMargin = 0.08; // 8%
+                    } else if (cost <= 3000) {
+                        profitMargin = 0.05; // 5%
+                    } else {
+                        profitMargin = 0.03; // 3%
+                    }
+
+                    totalMaterialProfit += cost * profitMargin;
+                }
+            });
+
+            if (isNaN(hours) || hours <= 0) {
+                alert("Please enter a valid number of hours.");
+                return;
             }
 
-            totalMaterialProfit += cost * profitMargin;
-        }
-    });
-
-    if (isNaN(hours) || hours <= 0) {
-        alert("Please enter a valid number of hours.");
-        return;
-    }
-
-    // Check if there are valid material costs
-    if (totalMaterialCost <= 0) {
-        alert("Please enter at least one valid material cost.");
-        return;
-    }
-
-    // Calculate costs
-    const laborCost = hourlyRate * hours;
-    const laborProfit = laborCost * 0.18; // 20% profit on labor
-    const totalCost = laborCost + totalMaterialCost;
-    const totalPrice = totalCost + totalMaterialProfit + laborProfit;
-
-    // Display cost before profit and total price with profit
-    document.getElementById('total-info').innerText = `السعر:  QR ${totalPrice.toFixed(2)}`;
-
-    // Generate receipt with profit details
-    generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice, laborProfit);
-}
-function generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice, laborProfit) {
-    const materialCostElements = document.querySelectorAll('.material-cost');
-    let materialDetails = '';
-
-    materialCostElements.forEach(input => {
-        const cost = parseFloat(input.value);
-        if (!isNaN(cost) && cost > 0) {
-            let profitMargin;
-            if (cost <= 500) {
-                profitMargin = 0.12; // 12%
-            } else if (cost <= 1500) {
-                profitMargin = 0.08; // 8%
-            } else if (cost <= 3000) {
-                profitMargin = 0.05; // 5%
-            } else {
-                profitMargin = 0.03; // 3%
+            // Check if there are valid material costs
+            if (totalMaterialCost <= 0) {
+                alert("Please enter at least one valid material cost.");
+                return;
             }
-            const profit = cost * profitMargin;
-            materialDetails += `تكلفة مادة: QR ${cost.toFixed(2)}, ربح: QR ${profit.toFixed(2)}\n`;
+
+            // Calculate costs
+            const laborCost = hourlyRate * hours;
+            const laborProfit = laborCost * 0.20; // 20% profit on labor
+            const totalCost = laborCost + totalMaterialCost;
+            const totalPrice = totalCost + totalMaterialProfit + laborProfit;
+
+            // Display cost before profit and total price with profit
+            document.getElementById('total-info').innerText = `السعر: QR ${totalPrice.toFixed(2)}`;
+
+            // Generate receipt with profit details
+            generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice, laborProfit);
         }
-    });
 
-    if (materialDetails === '') {
-        materialDetails = 'لا توجد تكاليف مواد.\n'; // Message for no material costs
-    }
+        function generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice, laborProfit) {
+            const materialCostElements = document.querySelectorAll('.material-cost');
+            let materialDetails = '';
 
-    document.getElementById('receipt-hours').innerText = `ساعات العمل: ${hours} ساعة`;
-    document.getElementById('receipt-materials').innerText = `تكلفة المواد: QR ${totalMaterialCost.toFixed(2)}`;
-    document.getElementById('receipt-labor-cost').innerText = `تكلفة العمل: QR ${laborCost.toFixed(2)} (ربح: QR ${laborProfit.toFixed(2)})`;
-    document.getElementById('receipt-total-price').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
+            materialCostElements.forEach(input => {
+                const cost = parseFloat(input.value);
+                if (!isNaN(cost) && cost > 0) {
+                    let profitMargin;
+                    if (cost <= 500) {
+                        profitMargin = 0.12; // 12%
+                    } else if (cost <= 1500) {
+                        profitMargin = 0.08; // 8%
+                    } else if (cost <= 3000) {
+                        profitMargin = 0.05; // 5%
+                    } else {
+                        profitMargin = 0.03; // 3%
+                    }
+                    const profit = cost * profitMargin;
+                    materialDetails += `تكلفة مادة: QR ${cost.toFixed(2)}, ربح: QR ${profit.toFixed(2)}\n`;
+                }
+            });
 
-    document.getElementById('receipt').style.display = 'block'; // Show the receipt
-}
+            if (materialDetails === '') {
+                materialDetails = 'لا توجد تكاليف مواد.\n'; // Message for no material costs
+            }
+
+            document.getElementById('receipt-hours').innerText = `ساعات العمل: ${hours} ساعة`;
+            document.getElementById('receipt-materials').innerText = `تكلفة المواد: QR ${totalMaterialCost.toFixed(2)}`;
+            document.getElementById('receipt-labor-cost').innerText = `تكلفة العمل: QR ${laborCost.toFixed(2)} (ربح: QR ${laborProfit.toFixed(2)})`;
+            document.getElementById('receipt-total-price').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
+
+            document.getElementById('receipt').style.display = 'block'; // Show the receipt
+        }
+    </script>
+
+</body>
+</html>
