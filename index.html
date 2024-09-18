@@ -51,10 +51,6 @@
             font-size: 24px;
             margin-top: 20px;
         }
-        #profit-info {
-            font-size: 18px;
-            margin-top: 10px;
-        }
         img {
             width: 100%; /* Make the image full width */
             height: auto; /* Maintain aspect ratio */
@@ -78,12 +74,10 @@
 
         <h2>السعر الإجمالي</h2>
         <div id="result">QR0.00</div>
-
-        <div id="profit-info"></div> <!-- Profit info will be displayed here -->
     </div>
 
     <script>
-        const hourlyRate = 277; // Fixed hourly rate
+        const hourlyRate = 222; // Fixed hourly rate
         const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
 
         function calculatePrice() {
@@ -101,13 +95,8 @@
             const profit = totalCost * fixedProfitMargin;
             const totalPrice = totalCost + profit;
 
-            // Display price before profit, profit, and price after profit in Arabic
+            // Display only total price after profit
             document.getElementById('result').innerText = `QR${totalPrice.toFixed(2)}`;
-            document.getElementById('profit-info').innerHTML = `
-                التكلفة الإجمالية قبل الربح: QR${totalCost.toFixed(2)}<br>
-                الربح: QR${profit.toFixed(2)}<br>
-                السعر الإجمالي مع الربح: QR${totalPrice.toFixed(2)}
-            `;
         }
     </script>
 
