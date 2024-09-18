@@ -83,6 +83,10 @@
     </div>
 
     <script>
+        const baseServiceFee = 100; // Base service fee for every job
+        const fixedHourlyRate = 200; // Lower base hourly rate
+        const serviceMultiplier = 1.11; // Multiplier to reach the desired hourly charge
+
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
             const materialCost = parseFloat(document.getElementById('material').value);
@@ -92,20 +96,18 @@
                 return;
             }
 
-            // Hidden complexity
-            const baseRate = 200 + (Math.random() * 50); // Base rate varies randomly
-            const overheadCost = Math.random() * 50; // Random overhead cost to obscure rate
-            const serviceCostFactor = 1.2; // Adds a bit of extra complexity
+            // Split labor cost into a base + multiplier system
+            let laborCost = (fixedHourlyRate * hours * serviceMultiplier) + baseServiceFee;
 
-            // Labor cost calculation with added complexity
-            const laborCost = (baseRate * hours * serviceCostFactor) + overheadCost;
-            const totalCost = laborCost + materialCost;
+            // Apply material handling fee (e.g., 10% on material costs)
+            const materialHandlingFee = materialCost * 0.10; // Material handling adds confusion
+            const totalCost = laborCost + materialCost + materialHandlingFee;
 
-            // Dynamic profit margin
-            const profit = laborCost * (0.15 + Math.random() * 0.05); // Random profit margin between 15-20%
+            // Keep profit margin simple, but dynamic
+            const profit = totalCost * 0.2; // 20% margin
             const totalPrice = totalCost + profit;
 
-            // Display results
+            // Display costs
             document.getElementById('cost-info').innerText = `QR ${totalCost.toFixed(2)} :التكلفة الإجمالية`;
             document.getElementById('total-info').innerText = `QR ${totalPrice.toFixed(2)} :السعر الإجمالي`;
             document.getElementById('profit-info').innerText = `QR ${profit.toFixed(2)} :الربح الصافي`;
