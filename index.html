@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: right; /* Align text to the right */
             padding: 0;
             margin: 0;
             background-color: #f4f4f4; /* White background */
@@ -24,6 +23,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the labels and input fields */
         }
         input[type="number"] {
             width: 70%; /* Make the input boxes smaller */
@@ -41,19 +41,19 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
         }
         #result {
             margin-top: 20px;
+            text-align: right; /* Align result to the right */
         }
         #cost-info, #total-info, #profit-info {
             font-size: 26px; /* Slightly smaller font size for cost, total price, and profit */
             font-weight: bold; /* Make the text bold */
             margin-top: 20px;
-            text-align: right; /* Align text to the right */
-            direction: rtl;
         }
         img {
             width: 100%; /* Make the image full width */
@@ -103,9 +103,9 @@
             const totalPrice = totalCost + profit;
 
             // Display cost before profit, total price with profit, and pure profit
-            document.getElementById('cost-info').innerText = `التكلفة الإجمالية: QR ${totalCost.toFixed(2)}`;
-            document.getElementById('total-info').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
-            document.getElementById('profit-info').innerText = `الربح الصافي: QR ${profit.toFixed(2)}`;
+            document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
+            document.getElementById('profit-info').innerText = `:الربح الصافي QR ${profit.toFixed(2)}`;
         }
     </script>
 
