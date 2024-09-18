@@ -7,14 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             padding: 0;
             margin: 0;
-            background-color: #f4f4f4; /* White background */
+            background-color: #f4f4f4;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            direction: rtl; /* Set direction to RTL for Arabic */
         }
         .container {
             max-width: 600px;
@@ -23,15 +23,14 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center the labels and input fields */
         }
         input[type="number"] {
-            width: 70%; /* Make the input boxes smaller */
+            width: 70%;
             padding: 8px;
             margin: 10px auto;
             border-radius: 5px;
             border: 1px solid #ccc;
-            display: block; /* Center the input boxes */
+            display: block;
         }
         button {
             padding: 10px 20px;
@@ -41,24 +40,24 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
         }
         #result {
             margin-top: 20px;
-            text-align: right; /* Align result to the right */
         }
         #cost-info, #total-info, #profit-info {
-            font-size: 26px; /* Slightly smaller font size for cost, total price, and profit */
-            font-weight: bold; /* Make the text bold */
+            font-size: 20px;
+            font-weight: bold;
             margin-top: 20px;
+            text-align: left;
+            direction: rtl;
         }
         img {
-            width: 100%; /* Make the image full width */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Remove bottom space */
+            width: 100%;
+            height: auto;
+            display: block;
             margin-bottom: 20px;
         }
     </style>
@@ -77,16 +76,13 @@
         <button onclick="calculatePrice()">احسب السعر</button>
 
         <div id="result">
-            <div id="cost-info"></div> <!-- Cost before profit -->
-            <div id="total-info"></div> <!-- Price with profit -->
-            <div id="profit-info"></div> <!-- Pure profit -->
+            <div id="cost-info"></div>
+            <div id="total-info"></div>
+            <div id="profit-info"></div>
         </div>
     </div>
 
     <script>
-        const hourlyRate = 222; // Fixed hourly rate
-        const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
-
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
             const materialCost = parseFloat(document.getElementById('material').value);
@@ -96,16 +92,23 @@
                 return;
             }
 
-            // Calculate costs
-            const laborCost = hourlyRate * hours;
+            // Hidden complexity
+            const baseRate = 200 + (Math.random() * 50); // Base rate varies randomly
+            const overheadCost = Math.random() * 50; // Random overhead cost to obscure rate
+            const serviceCostFactor = 1.2; // Adds a bit of extra complexity
+
+            // Labor cost calculation with added complexity
+            const laborCost = (baseRate * hours * serviceCostFactor) + overheadCost;
             const totalCost = laborCost + materialCost;
-            const profit = laborCost * fixedProfitMargin; // Profit based only on labor cost
+
+            // Dynamic profit margin
+            const profit = laborCost * (0.15 + Math.random() * 0.05); // Random profit margin between 15-20%
             const totalPrice = totalCost + profit;
 
-            // Display cost before profit, total price with profit, and pure profit
-            
-            document.getElementById('total-info').innerText = `:السعر QR ${totalPrice.toFixed(2)}`;
-            
+            // Display results
+            document.getElementById('cost-info').innerText = `QR ${totalCost.toFixed(2)} :التكلفة الإجمالية`;
+            document.getElementById('total-info').innerText = `QR ${totalPrice.toFixed(2)} :السعر الإجمالي`;
+            document.getElementById('profit-info').innerText = `QR ${profit.toFixed(2)} :الربح الصافي`;
         }
     </script>
 
