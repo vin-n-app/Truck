@@ -70,6 +70,9 @@
         <label for="hours">ساعات إنجاز العمل</label>
         <input type="number" id="hours" placeholder="Enter hours of work">
 
+        <label for="workers">عدد العمال</label>
+        <input type="number" id="workers" placeholder="Enter number of workers">
+
         <label for="material">كلفة المواد</label>
         <input type="number" id="material" placeholder="Enter material cost">
 
@@ -84,26 +87,27 @@
 
     <script>
         const baseServiceFee = 100; // Base service fee for every job
-        const fixedHourlyRate = 200; // Lower base hourly rate
-        const serviceMultiplier = 1.11; // Multiplier to reach the desired hourly charge
+        const baseHourlyRate = 200; // Base hourly rate per worker
+        const serviceMultiplier = 1.11; // Multiplier to obscure the actual rate
 
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
+            const workers = parseFloat(document.getElementById('workers').value);
             const materialCost = parseFloat(document.getElementById('material').value);
 
-            if (isNaN(hours) || isNaN(materialCost)) {
+            if (isNaN(hours) || isNaN(workers) || isNaN(materialCost) || workers <= 0) {
                 alert("Please enter valid values.");
                 return;
             }
 
-            // Split labor cost into a base + multiplier system
-            let laborCost = (fixedHourlyRate * hours * serviceMultiplier) + baseServiceFee;
+            // Calculate labor cost based on hours, workers, and service multiplier
+            const laborCost = (baseHourlyRate * hours * workers * serviceMultiplier) + baseServiceFee;
 
             // Apply material handling fee (e.g., 10% on material costs)
-            const materialHandlingFee = materialCost * 0.10; // Material handling adds confusion
+            const materialHandlingFee = materialCost * 0.10; 
             const totalCost = laborCost + materialCost + materialHandlingFee;
 
-            // Keep profit margin simple, but dynamic
+            // Keep profit margin simple
             const profit = totalCost * 0.2; // 20% margin
             const totalPrice = totalCost + profit;
 
