@@ -10,9 +10,8 @@
             text-align: center;
             padding: 0;
             margin: 0;
-            background: url('https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png') no-repeat center center fixed;
-            background-size: cover; /* Ensure the background image covers the entire page */
-            min-height: 100vh; /* Ensure the body covers the full viewport height */
+            background-color: #f4f4f4; /* White background */
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,7 +74,7 @@
         <label for="material">كلفة المواد</label>
         <input type="number" id="material" placeholder="Enter material cost">
 
-        <button onclick="calculatePrice()">Calculate Price</button>
+        <button onclick="calculatePrice()">احسب السعر</button>
 
         <h2>السعر الإجمالي</h2>
         <div id="result">QR0.00</div>
@@ -102,12 +101,12 @@
             const profit = totalCost * fixedProfitMargin;
             const totalPrice = totalCost + profit;
 
-            // Display price before profit, profit, and price after profit
+            // Display price before profit, profit, and price after profit in Arabic
             document.getElementById('result').innerText = `QR${totalPrice.toFixed(2)}`;
             document.getElementById('profit-info').innerHTML = `
-                Total cost before profit: QR${totalCost.toFixed(2)}<br>
-                Profit: QR${profit.toFixed(2)}<br>
-                Total price with profit: QR${totalPrice.toFixed(2)}
+                التكلفة الإجمالية قبل الربح: QR${totalCost.toFixed(2)}<br>
+                الربح: QR${profit.toFixed(2)}<br>
+                السعر الإجمالي مع الربح: QR${totalPrice.toFixed(2)}
             `;
         }
     </script>
