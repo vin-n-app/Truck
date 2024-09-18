@@ -10,7 +10,7 @@
             text-align: center;
             padding: 0;
             margin: 0;
-            background: url('https://i.postimg.cc/your-image-url.jpg') no-repeat center center fixed;
+            background: url('https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png') no-repeat center center fixed;
             background-size: cover; /* Ensure the background image covers the entire page */
             min-height: 100vh; /* Ensure the body covers the full viewport height */
             display: flex;
@@ -52,6 +52,10 @@
             font-size: 24px;
             margin-top: 20px;
         }
+        #profit-info {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         img {
             width: 100%; /* Make the image full width */
             height: auto; /* Maintain aspect ratio */
@@ -75,6 +79,8 @@
 
         <h2>السعر الإجمالي</h2>
         <div id="result">QR0.00</div>
+
+        <div id="profit-info"></div> <!-- Profit info will be displayed here -->
     </div>
 
     <script>
@@ -90,11 +96,19 @@
                 return;
             }
 
+            // Calculate costs
             const laborCost = hourlyRate * hours;
             const totalCost = laborCost + materialCost;
-            const totalPrice = totalCost + (totalCost * fixedProfitMargin);
+            const profit = totalCost * fixedProfitMargin;
+            const totalPrice = totalCost + profit;
 
+            // Display price before profit, profit, and price after profit
             document.getElementById('result').innerText = `QR${totalPrice.toFixed(2)}`;
+            document.getElementById('profit-info').innerHTML = `
+                Total cost before profit: QR${totalCost.toFixed(2)}<br>
+                Profit: QR${profit.toFixed(2)}<br>
+                Total price with profit: QR${totalPrice.toFixed(2)}
+            `;
         }
     </script>
 
