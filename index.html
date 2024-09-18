@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truck Garage</title>
+    <title>Mechanic Shop Pricing</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,8 +113,8 @@
     <script>
         const hourlyRate = 222; // Fixed hourly rate
         const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
-        const overheads = 26000; // Shop's fixed overheads
-        const salaries = 32000; // Total salaries for 7 employees
+        const fixedOverheads = 26000; // Fixed monthly overheads
+        const fixedSalaries = 32000; // Fixed monthly salaries
 
         function addMaterial() {
             const materialList = document.getElementById('materials-list');
@@ -150,7 +150,7 @@
 
             // Calculate costs
             const laborCost = hourlyRate * hours;
-            const totalCost = laborCost + totalMaterialCost + overheads + salaries;
+            const totalCost = laborCost + totalMaterialCost + fixedOverheads + fixedSalaries;
             const profit = totalCost * fixedProfitMargin; // Profit based on total cost
             const totalPrice = totalCost + profit;
 
