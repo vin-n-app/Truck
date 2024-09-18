@@ -94,8 +94,8 @@
         // Calculate the hourly rate per worker
         const baseHourlyRate = monthlyExpenses / (monthlyHours * numberOfEmployees);
 
-        // Use a hidden multiplier to obscure the base hourly rate
-        const rateMultiplier = 1.1; // Example multiplier to obscure the rate
+        // Hidden multiplier to obscure the base hourly rate
+        const rateMultiplier = 1.2; // Example multiplier to obscure the rate
 
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
@@ -109,14 +109,13 @@
 
             // Calculate labor cost with the obscured hourly rate
             const laborCost = baseHourlyRate * hours * workers * rateMultiplier;
-            const totalLaborCost = laborCost + materialCost;
 
-            // Add a handling fee for materials (e.g., 10% of material cost)
+            // Add handling fee for materials (e.g., 10% of material cost)
             const materialHandlingFee = materialCost * 0.10;
             const totalCost = laborCost + materialCost + materialHandlingFee;
 
-            // Keep profit margin simple
-            const profit = totalCost * 0.2; // 20% margin
+            // Calculate profit margin (20% of total cost)
+            const profit = totalCost * 0.20;
             const totalPrice = totalCost + profit;
 
             // Display costs
