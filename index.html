@@ -51,6 +51,10 @@
             font-size: 24px;
             margin-top: 20px;
         }
+        #cost-info, #total-info {
+            font-size: 18px;
+            margin-top: 10px;
+        }
         img {
             width: 100%; /* Make the image full width */
             height: auto; /* Maintain aspect ratio */
@@ -73,7 +77,8 @@
         <button onclick="calculatePrice()">احسب السعر</button>
 
         <h2>السعر الإجمالي</h2>
-        <div id="result">QR0.00</div>
+        <div id="cost-info"></div> <!-- Cost before profit -->
+        <div id="total-info"></div> <!-- Price with profit -->
     </div>
 
     <script>
@@ -95,8 +100,9 @@
             const profit = totalCost * fixedProfitMargin;
             const totalPrice = totalCost + profit;
 
-            // Display only total price after profit
-            document.getElementById('result').innerText = `QR${totalPrice.toFixed(2)}`;
+            // Display cost before profit and total price with profit
+            document.getElementById('cost-info').innerText = `التكلفة الإجمالية قبل الربح: QR${totalCost.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `السعر الإجمالي مع الربح: QR${totalPrice.toFixed(2)}`;
         }
     </script>
 
