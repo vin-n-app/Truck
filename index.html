@@ -86,9 +86,16 @@
     </div>
 
     <script>
-        const baseServiceFee = 100; // Base service fee for every job
-        const baseHourlyRate = 200; // Base hourly rate per worker
-        const serviceMultiplier = 1.11; // Multiplier to obscure the actual rate
+        // Monthly Expenses and Hours
+        const monthlyExpenses = 58000; // Monthly expenses in QAR
+        const monthlyHours = 260; // Monthly hours worked
+        const numberOfEmployees = 7; // Number of employees
+
+        // Calculate the hourly rate per worker
+        const baseHourlyRate = monthlyExpenses / (monthlyHours * numberOfEmployees);
+
+        // Use a hidden multiplier to obscure the base hourly rate
+        const rateMultiplier = 1.1; // Example multiplier to obscure the rate
 
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
@@ -100,11 +107,12 @@
                 return;
             }
 
-            // Calculate labor cost based on hours, workers, and service multiplier
-            const laborCost = (baseHourlyRate * hours * workers * serviceMultiplier) + baseServiceFee;
+            // Calculate labor cost with the obscured hourly rate
+            const laborCost = baseHourlyRate * hours * workers * rateMultiplier;
+            const totalLaborCost = laborCost + materialCost;
 
-            // Apply material handling fee (e.g., 10% on material costs)
-            const materialHandlingFee = materialCost * 0.10; 
+            // Add a handling fee for materials (e.g., 10% of material cost)
+            const materialHandlingFee = materialCost * 0.10;
             const totalCost = laborCost + materialCost + materialHandlingFee;
 
             // Keep profit margin simple
