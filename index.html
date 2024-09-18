@@ -52,7 +52,8 @@
             font-size: 30px; /* Larger text size for cost, total price, and profit */
             font-weight: bold; /* Make the text bold */
             margin-top: 20px;
-            text-align: left; /* Align text to the left */
+            text-align: right; /* Align text to the right */
+            direction: rtl;
         }
         img {
             width: 100%; /* Make the image full width */
@@ -102,9 +103,9 @@
             const totalPrice = totalCost + profit;
 
             // Display cost before profit, total price with profit, and pure profit
-            document.getElementById('cost-info').innerText = `QR ${totalCost.toFixed(2)} :التكلفة الإجمالية`;
-            document.getElementById('total-info').innerText = `QR ${totalPrice.toFixed(2)} :السعر الإجمالي`;
-            document.getElementById('profit-info').innerText = `QR ${profit.toFixed(2)} :الربح الصافي`;
+            document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
+            document.getElementById('profit-info').innerText = `:الربح الصافي QR ${profit.toFixed(2)}`;
         }
     </script>
 
