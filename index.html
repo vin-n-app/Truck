@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mechanic Shop Pricing Calculator</title>
+    <title>Truck Garage</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             padding: 0;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* White background */
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            direction: rtl; /* Set direction to RTL for Arabic */
         }
         .container {
             max-width: 600px;
@@ -23,14 +23,15 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the labels and input fields */
         }
         input[type="number"] {
-            width: 70%;
+            width: 70%; /* Make the input boxes smaller */
             padding: 8px;
             margin: 10px auto;
             border-radius: 5px;
             border: 1px solid #ccc;
-            display: block;
+            display: block; /* Center the input boxes */
         }
         button {
             padding: 10px 20px;
@@ -40,24 +41,24 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
         }
         #result {
             margin-top: 20px;
+            text-align: right; /* Align result to the right */
         }
         #cost-info, #total-info, #profit-info {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 26px; /* Slightly smaller font size for cost, total price, and profit */
+            font-weight: bold; /* Make the text bold */
             margin-top: 20px;
-            text-align: left;
-            direction: rtl;
         }
         img {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: 100%; /* Make the image full width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove bottom space */
             margin-bottom: 20px;
         }
     </style>
@@ -70,58 +71,41 @@
         <label for="hours">ساعات إنجاز العمل</label>
         <input type="number" id="hours" placeholder="Enter hours of work">
 
-        <label for="workers">عدد العمال</label>
-        <input type="number" id="workers" placeholder="Enter number of workers">
-
         <label for="material">كلفة المواد</label>
         <input type="number" id="material" placeholder="Enter material cost">
 
         <button onclick="calculatePrice()">احسب السعر</button>
 
         <div id="result">
-            <div id="cost-info"></div>
-            <div id="total-info"></div>
-            <div id="profit-info"></div>
+            <div id="cost-info"></div> <!-- Cost before profit -->
+            <div id="total-info"></div> <!-- Price with profit -->
+            <div id="profit-info"></div> <!-- Pure profit -->
         </div>
     </div>
 
     <script>
-        // Monthly Expenses and Hours
-        const monthlyExpenses = 58000; // Monthly expenses in QAR
-        const monthlyHours = 260; // Monthly hours worked
-        const numberOfEmployees = 7; // Number of employees
-
-        // Calculate the hourly rate per worker
-        const baseHourlyRate = monthlyExpenses / (monthlyHours * numberOfEmployees);
-
-        // Hidden multiplier to obscure the base hourly rate
-        const rateMultiplier = 1.2; // Example multiplier to obscure the rate
+        const hourlyRate = 222; // Fixed hourly rate
+        const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
 
         function calculatePrice() {
             const hours = parseFloat(document.getElementById('hours').value);
-            const workers = parseFloat(document.getElementById('workers').value);
             const materialCost = parseFloat(document.getElementById('material').value);
 
-            if (isNaN(hours) || isNaN(workers) || isNaN(materialCost) || workers <= 0) {
+            if (isNaN(hours) || isNaN(materialCost)) {
                 alert("Please enter valid values.");
                 return;
             }
 
-            // Calculate labor cost with the obscured hourly rate
-            const laborCost = baseHourlyRate * hours * workers * rateMultiplier;
-
-            // Add handling fee for materials (e.g., 10% of material cost)
-            const materialHandlingFee = materialCost * 0.10;
-            const totalCost = laborCost + materialCost + materialHandlingFee;
-
-            // Calculate profit margin (20% of total cost)
-            const profit = totalCost * 0.20;
+            // Calculate costs
+            const laborCost = hourlyRate * hours;
+            const totalCost = laborCost + materialCost;
+            const profit = laborCost * fixedProfitMargin; // Profit based only on labor cost
             const totalPrice = totalCost + profit;
 
-            // Display costs
-            document.getElementById('cost-info').innerText = `QR ${totalCost.toFixed(2)} :التكلفة الإجمالية`;
-            document.getElementById('total-info').innerText = `QR ${totalPrice.toFixed(2)} :السعر الإجمالي`;
-            document.getElementById('profit-info').innerText = `QR ${profit.toFixed(2)} :الربح الصافي`;
+            // Display cost before profit, total price with profit, and pure profit
+            document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
+            document.getElementById('profit-info').innerText = `:الربح الصافي QR ${profit.toFixed(2)}`;
         }
     </script>
 
