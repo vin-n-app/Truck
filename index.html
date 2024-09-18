@@ -132,7 +132,6 @@
 
     <script>
         const hourlyRate = 222; // Fixed hourly rate
-        const fixedProfitMargin = 0.2; // Fixed profit margin (20%)
 
         function addMaterial() {
             const materialList = document.getElementById('materials-list');
@@ -153,11 +152,26 @@
             const hours = parseFloat(document.getElementById('hours').value);
             const materialCosts = document.querySelectorAll('.material-cost');
             let totalMaterialCost = 0;
+            let totalProfit = 0;
 
             materialCosts.forEach(input => {
                 const cost = parseFloat(input.value);
                 if (!isNaN(cost)) {
                     totalMaterialCost += cost;
+
+                    // Calculate profit margin based on the cost
+                    let profitMargin;
+                    if (cost <= 500) {
+                        profitMargin = 0.12; // 12%
+                    } else if (cost <= 1500) {
+                        profitMargin = 0.08; // 8%
+                    } else if (cost <= 3000) {
+                        profitMargin = 0.05; // 5%
+                    } else {
+                        profitMargin = 0.03; // 3%
+                    }
+
+                    totalProfit += cost * profitMargin;
                 }
             });
 
@@ -169,22 +183,40 @@
             // Calculate costs
             const laborCost = hourlyRate * hours;
             const totalCost = laborCost + totalMaterialCost;
-            const profit = totalCost * fixedProfitMargin; // Profit based on total cost
-            const totalPrice = totalCost + profit;
+            const totalPrice = totalCost + totalProfit;
 
             // Display cost before profit and total price with profit
-            document.getElementById('cost-info').innerText = `:التكلفة الإجمالية QR ${totalCost.toFixed(2)}`;
-            document.getElementById('total-info').innerText = `:السعر الإجمالي QR ${totalPrice.toFixed(2)}`;
+            document.getElementById('total-info').innerText = `السعر:  QR ${totalPrice.toFixed(2)}`;
 
             // Generate receipt without showing profit
             generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice);
         }
 
         function generateReceipt(hours, totalMaterialCost, laborCost, totalCost, totalPrice) {
+            const materialCostElements = document.querySelectorAll('.material-cost');
+            let materialDetails = '';
+
+            materialCostElements.forEach(input => {
+                const cost = parseFloat(input.value);
+                if (!isNaN(cost)) {
+                    let profitMargin;
+                    if (cost <= 500) {
+                        profitMargin = 0.12; // 12%
+                    } else if (cost <= 1500) {
+                        profitMargin = 0.08; // 8%
+                    } else if (cost <= 3000) {
+                        profitMargin = 0.05; // 5%
+                    } else {
+                        profitMargin = 0.03; // 3%
+                    }
+                    const profit = cost * profitMargin;
+                    materialDetails += `تكلفة مادة: QR ${cost.toFixed(2)}, ربح: QR ${profit.toFixed(2)}\n`;
+                }
+            });
+
             document.getElementById('receipt-hours').innerText = `ساعات العمل: ${hours} ساعة`;
             document.getElementById('receipt-materials').innerText = `تكلفة المواد: QR ${totalMaterialCost.toFixed(2)}`;
             document.getElementById('receipt-labor-cost').innerText = `تكلفة العمل: QR ${laborCost.toFixed(2)}`;
-            document.getElementById('receipt-total-cost').innerText = `التكلفة الإجمالية: QR ${totalCost.toFixed(2)}`;
             document.getElementById('receipt-total-price').innerText = `السعر الإجمالي: QR ${totalPrice.toFixed(2)}`;
 
             document.getElementById('receipt').style.display = 'block'; // Show the receipt
