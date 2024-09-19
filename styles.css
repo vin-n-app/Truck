@@ -15,29 +15,27 @@ body {
 }
 
 header {
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    padding: 20px; /* Optional: Add padding around the header */
-    box-sizing: border-box; /* Ensure padding does not affect the width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Space between logo and form */
 }
 
 header img {
-    max-width: 100%; /* Scale the image based on container width */
+    max-width: 100%;
     width: 80%; /* Adjust width for smaller screens */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensure the image is a block-level element */
-    margin: 0 auto; /* Center the image horizontally */
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 @media (max-width: 600px) {
     header {
-        padding: 10px; /* Adjust padding for smaller screens if needed */
+        padding: 10px;
     }
 
     header img {
-        width: 90%; /* Slightly larger width for small screens */
-        max-width: none; /* Remove the max-width constraint */
+        width: 90%;
     }
 }
 
