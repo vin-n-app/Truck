@@ -5,18 +5,18 @@ body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
     height: 100vh; /* Full viewport height */
 }
 
 .container {
     width: 100%;
     max-width: 600px;
+    margin-top: 20px; /* Space from the top of the viewport */
     padding: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 30px; /* Margin to ensure container is not too close to the top */
 }
 
 header {
@@ -27,44 +27,40 @@ header img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto; /* Center image */
 }
 
 h1 {
     color: #333;
-    margin: 0 0 20px 0; /* Remove default margin at the top, add space below */
+    margin: 0 0 20px 0; /* Margin below heading */
 }
 
 form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align form elements */
+    align-items: center; /* Center form elements */
 }
 
 label {
     margin: 10px 0 5px;
-    display: block; /* Ensure labels are block-level */
+    width: 100%; /* Ensure labels are full width */
+    text-align: left; /* Align text to the left */
 }
 
-input {
+input, button {
     padding: 10px;
     font-size: 16px;
     margin-bottom: 20px;
-    width: 100%; /* Full width for input fields */
-    max-width: 400px; /* Limit max width for better alignment */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 100%; /* Full width for inputs and button */
+    max-width: 400px; /* Max width for alignment */
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 button {
-    padding: 10px;
     background-color: #333;
     color: white;
     border: none;
     cursor: pointer;
-    width: 100%; /* Full width button */
-    max-width: 400px; /* Limit max width for better alignment */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    margin-bottom: 20px; /* Space below button */
 }
 
 button:hover {
@@ -75,12 +71,7 @@ button:hover {
     margin-top: 20px;
 }
 
-#receipt h2 {
-    color: #333;
-    margin: 0; /* Remove default margin at the top */
-}
-
 #receipt p {
     font-size: 18px;
-    margin: 10px 0; /* Add space around the paragraph */
+    margin: 10px 0; /* Space around text */
 }
