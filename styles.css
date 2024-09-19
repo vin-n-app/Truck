@@ -1,77 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh; /* Full viewport height */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Garage Pricing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://i.postimg.cc/P5hP6VFh/truck-garage-picture.png" alt="Truck Garage Logo">
+            <h1>Truck Garage - Job Pricing</h1>
+        </header>
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px; /* Space from the top of the viewport */
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+        <form id="pricingForm">
+            <label for="laborHours">Labor Hours:</label>
+            <input type="number" id="laborHours" name="laborHours" placeholder="Enter hours" required>
 
-header {
-    margin-bottom: 20px; /* Space between logo and form */
-}
+            <label for="numWorkers">Number of Workers:</label>
+            <input type="number" id="numWorkers" name="numWorkers" placeholder="Enter number of workers" required>
 
-header img {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Center image */
-}
+            <label for="materialCost">Material Costs (QAR):</label>
+            <input type="number" id="materialCost" name="materialCost" placeholder="Enter material costs" required>
 
-h1 {
-    color: #333;
-    margin: 10px 0; /* Margin around heading */
-}
+            <button type="button" onclick="calculatePrice()">Calculate</button>
+        </form>
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center form elements */
-}
+        <div id="receipt">
+            <p>Total Cost: <span id="totalCost">0 QAR</span></p>
+        </div>
+    </div>
 
-label {
-    margin: 10px 0 5px;
-    width: 100%; /* Ensure labels are full width */
-    text-align: left; /* Align text to the left */
-}
-
-input, button {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    width: 100%; /* Full width for inputs and button */
-    max-width: 400px; /* Max width for alignment */
-    box-sizing: border-box; /* Include padding and border in width */
-}
-
-button {
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-#receipt {
-    margin-top: 20px;
-}
-
-#receipt p {
-    font-size: 18px;
-    margin: 10px 0; /* Space around text */
-}
+    <script src="script.js"></script>
+</body>
+</html>
