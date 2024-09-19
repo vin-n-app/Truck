@@ -3,60 +3,48 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh; /* Full viewport height */
 }
 
 .container {
     width: 100%;
     max-width: 600px;
-    margin-top: 20px; /* Space from the top of the viewport */
+    margin: auto;
     padding: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    margin-top: 20px; /* Ensure container is at the top */
 }
 
 header {
-    margin-bottom: 20px; /* Space between logo and form */
+    text-align: center;
 }
 
 header img {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Center image */
+    width: 250px; /* Make the logo bigger */
+    height: auto; /* Maintain aspect ratio */
 }
 
 h1 {
     color: #333;
-    margin: 10px 0; /* Margin around heading */
 }
 
 form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center form elements */
 }
 
 label {
     margin: 10px 0 5px;
-    width: 100%; /* Ensure labels are full width */
-    text-align: left; /* Align text to the left */
 }
 
-input, button {
+input {
     padding: 10px;
     font-size: 16px;
     margin-bottom: 20px;
-    width: 100%; /* Full width for inputs and button */
-    max-width: 400px; /* Max width for alignment */
-    box-sizing: border-box; /* Include padding and border in width */
 }
 
 button {
+    padding: 10px;
     background-color: #333;
     color: white;
     border: none;
@@ -71,7 +59,15 @@ button:hover {
     margin-top: 20px;
 }
 
+#receipt h2 {
+    color: #333;
+}
+
 #receipt p {
     font-size: 18px;
-    margin: 10px 0; /* Space around text */
+    margin: 5px 0;
+}
+
+#receipt span {
+    font-weight: bold;
 }
