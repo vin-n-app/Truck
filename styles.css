@@ -19,8 +19,11 @@ header {
 }
 
 header img {
-    max-width: 150px;
-    margin-bottom: 10px;
+    max-width: 300px; /* Adjust this value as needed */
+    width: 100%; /* Ensures the image scales responsively */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Center the image block-level */
 }
 
 h1 {
