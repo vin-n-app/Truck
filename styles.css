@@ -15,17 +15,16 @@ body {
 }
 
 header {
-    text-align: center;
+    text-align: center; /* Center the logo within the header */
 }
 
 header img {
-    max-width: 300px; /* Adjust this value as needed */
-    width: 100%; /* Ensures the image scales responsively */
+    max-width: 100%; /* Allows scaling based on the container */
+    width: 500px; /* Set a specific width for the logo */
     height: auto; /* Maintain aspect ratio */
-    margin: 0 auto; /* Center the image horizontally */
-    display: block; /* Center the image block-level */
+    padding-left: 20px; /* Optional: Add padding for more space on the left */
+    padding-right: 20px; /* Optional: Add padding for more space on the right */
 }
-
 h1 {
     color: #333;
 }
