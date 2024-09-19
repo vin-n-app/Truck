@@ -1,5 +1,5 @@
 // Constants
-const workerHourlyRate = 4500 / 160;  // Worker rate per hour (28.13 QAR/hour)
+const workerHourlyRate = 4500 / 260;  // Worker rate per hour (17 QAR/hour)
 const overheadCosts = 26000;
 const profitMargin = 0;
 
@@ -22,7 +22,7 @@ function calculatePrice() {
 
     // Proportional overhead calculation: Overhead per day divided by hours worked
     const dailyOverheadPerWorker = overheadCosts / 30;  // Daily overhead per worker
-    const hourlyOverhead = dailyOverheadPerWorker / 8;  // Hourly overhead
+    const hourlyOverhead = dailyOverheadPerWorker / 10;  // Hourly overhead
     const overheadForJob = laborHours * numWorkers * hourlyOverhead;  // Proportional overhead for the job
 
     // Calculate total cost
