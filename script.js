@@ -1,5 +1,5 @@
 // Constants
-const workerHourlyRate = 4500 / 160;  // Worker rate per hour
+const workerHourlyRate = 4500 / 160;  // Worker rate per hour (28.13 QAR/hour)
 const overheadCosts = 26000;
 const profitMargin = 0.2;
 
@@ -20,12 +20,13 @@ function calculatePrice() {
     // Calculate material cost with profit markup
     const materialWithProfit = materialCost * (1 + profitMargin);
 
-    // Calculate proportional overhead for the job based on labor hours
+    // Proportional overhead calculation: Overhead per day divided by hours worked
     const dailyOverheadPerWorker = overheadCosts / 30;  // Daily overhead per worker
-    const proportionalOverhead = (laborHours / 8) * numWorkers * dailyOverheadPerWorker;  // Proportional overhead
+    const hourlyOverhead = dailyOverheadPerWorker / 8;  // Hourly overhead
+    const overheadForJob = laborHours * numWorkers * hourlyOverhead;  // Proportional overhead for the job
 
     // Calculate total cost
-    const totalCost = laborCost + materialWithProfit + proportionalOverhead;
+    const totalCost = laborCost + materialWithProfit + overheadForJob;
 
     // Update receipt
     document.getElementById('laborCost').textContent = `${laborCost.toFixed(2)} QAR`;
