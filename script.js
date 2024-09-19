@@ -1,7 +1,7 @@
 // Constants
 const workerHourlyRate = 4500 / 160;  // Worker rate per hour (28.13 QAR/hour)
 const overheadCosts = 26000;
-const profitMargin = 0.2;
+const profitMargin = 0;
 
 // Calculation function
 function calculatePrice() {
