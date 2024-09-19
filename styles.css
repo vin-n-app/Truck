@@ -21,8 +21,10 @@ header {
 }
 
 header img {
-    max-width: 300%; /* Ensure the image scales to container width */
+    width: 300px; /* Set desired width for the logo */
     height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure it is treated as a block element */
+    margin: 0 auto; /* Center the image horizontally */
 }
 
 form {
