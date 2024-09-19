@@ -16,15 +16,24 @@ body {
 
 header {
     text-align: center; /* Center the logo within the header */
+    padding: 20px; /* Optional: Add padding around the header */
 }
 
 header img {
-    max-width: 100%; /* Allows scaling based on the container */
-    width: 500px; /* Set a specific width for the logo */
-    height: auto; /* Maintain aspect ratio */
-    padding-left: 20px; /* Optional: Add padding for more space on the left */
-    padding-right: 20px; /* Optional: Add padding for more space on the right */
+    max-width: 100%; /* Allows the image to scale based on the container width */
+    width: 500px; /* Set a specific width to control the size */
+    height: auto; /* Maintain the aspect ratio */
+    display: block; /* Ensure it is displayed as a block element */
+    margin: 0 auto; /* Center horizontally */
 }
+
+@media (max-width: 600px) {
+    header img {
+        width: 80%; /* Adjust width for smaller screens if necessary */
+        max-width: none; /* Remove the max-width constraint */
+    }
+}
+
 h1 {
     color: #333;
 }
