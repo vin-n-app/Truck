@@ -32,8 +32,6 @@ function calculatePrice() {
     // Calculate total cost
     const totalCost = laborCost + materialWithProfit + overheadForJob;
 
-    // Update receipt
-    document.getElementById('laborCost').textContent = `${laborCost.toFixed(2)} QAR`;
-    document.getElementById('materialTotal').textContent = `${materialWithProfit.toFixed(2)} QAR`;
-    document.getElementById('totalCost').textContent = `${totalCost.toFixed(2)} QAR`;
+    // Display only total cost
+    document.getElementById('totalCost').textContent = `Total Cost: ${totalCost.toFixed(2)} QAR`;
 }
