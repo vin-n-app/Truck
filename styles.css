@@ -14,7 +14,6 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* General styles */
 header {
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Center content horizontally */
@@ -41,8 +40,6 @@ header img {
         max-width: none; /* Remove the max-width constraint */
     }
 }
-
-
 
 h1 {
     color: #333;
