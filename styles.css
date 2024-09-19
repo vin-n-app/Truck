@@ -15,24 +15,26 @@ body {
 }
 
 header {
-    text-align: center; /* Center the logo within the header */
+    text-align: center; /* Center the content horizontally */
     padding: 20px; /* Optional: Add padding around the header */
+    box-sizing: border-box; /* Ensure padding does not affect the width */
 }
 
 header img {
-    max-width: 100%; /* Allows the image to scale based on the container width */
-    width: 500px; /* Set a specific width to control the size */
-    height: auto; /* Maintain the aspect ratio */
-    display: block; /* Ensure it is displayed as a block element */
-    margin: 0 auto; /* Center horizontally */
+    max-width: 100%; /* Scale the image based on container width */
+    width: 80%; /* Adjust width for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the image is a block-level element */
+    margin: 0 auto; /* Center the image horizontally */
 }
 
 @media (max-width: 600px) {
     header img {
-        width: 80%; /* Adjust width for smaller screens if necessary */
+        width: 90%; /* Slightly larger width for small screens */
         max-width: none; /* Remove the max-width constraint */
     }
 }
+
 
 h1 {
     color: #333;
