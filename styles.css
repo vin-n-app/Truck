@@ -17,15 +17,12 @@ body {
 
 header {
     text-align: center;
+    margin-bottom: 20px; /* Add some space below the header */
 }
 
 header img {
-    width: 250px; /* Make the logo bigger */
+    max-width: 100%; /* Ensure the image scales to container width */
     height: auto; /* Maintain aspect ratio */
-}
-
-h1 {
-    color: #333;
 }
 
 form {
