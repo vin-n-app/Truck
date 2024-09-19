@@ -21,7 +21,8 @@ header {
 }
 
 header img {
-    width: 300px; /* Set desired width for the logo */
+    width: 200px; /* Adjust width to a more appropriate size */
+    max-width: 100%; /* Ensure logo doesn't exceed container width */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Ensure it is treated as a block element */
     margin: 0 auto; /* Center the image horizontally */
