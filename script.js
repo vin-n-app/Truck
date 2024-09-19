@@ -21,8 +21,12 @@ function calculatePrice() {
     // Calculate material cost with profit markup
     const materialWithProfit = materialCost * (1 + profitMargin);
 
+    // Proportional overhead for the job based on labor hours
+    const dailyOverheadPerWorker = overheadCosts / 30;  // Daily overhead
+    const overheadForJob = (laborHours / 8) * numWorkers * dailyOverheadPerWorker;  // Overhead for job
+
     // Calculate total cost
-    const totalCost = laborCost + materialWithProfit + (overheadCosts / 30);
+    const totalCost = laborCost + materialWithProfit + overheadForJob;
 
     // Update receipt
     document.getElementById('laborCost').textContent = `${laborCost.toFixed(2)} QAR`;
