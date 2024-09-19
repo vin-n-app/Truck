@@ -5,7 +5,7 @@ body {
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items at the top of the page */
+    align-items: flex-start; /* Align items at the top */
     height: 100vh; /* Full viewport height */
 }
 
@@ -15,34 +15,24 @@ body {
     padding: 20px;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text and elements inside the container */
-    margin-top: 20px; /* Margin to ensure the container is visible from the top */
+    text-align: center;
+    margin-top: 30px; /* Margin to ensure container is not too close to the top */
 }
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 20px; /* Space between logo and form */
 }
 
 header img {
     max-width: 100%;
-    width: 80%; /* Adjust width for smaller screens */
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-    header img {
-        width: 90%;
-    }
-}
-
 h1 {
     color: #333;
-    margin-top: 0; /* Remove default margin at the top */
+    margin: 0 0 20px 0; /* Remove default margin at the top, add space below */
 }
 
 form {
@@ -53,6 +43,7 @@ form {
 
 label {
     margin: 10px 0 5px;
+    display: block; /* Ensure labels are block-level */
 }
 
 input {
@@ -73,6 +64,7 @@ button {
     width: 100%; /* Full width button */
     max-width: 400px; /* Limit max width for better alignment */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-bottom: 20px; /* Space below button */
 }
 
 button:hover {
@@ -85,9 +77,10 @@ button:hover {
 
 #receipt h2 {
     color: #333;
+    margin: 0; /* Remove default margin at the top */
 }
 
 #receipt p {
     font-size: 18px;
-    margin: 5px 0;
+    margin: 10px 0; /* Add space around the paragraph */
 }
