@@ -1,6 +1,6 @@
 // Constants
         const workerMonthlyRate = 4500; // Monthly rate for one worker
-        const workHoursPerWeek = 10 * 6; // 10 hours per day, 6 days a week
+        const workHoursPerWeek = 8 * 6; // 10 hours per day, 6 days a week
         const workWeeksPerMonth = 4.33; // Average weeks per month
         const workerHourlyRate = workerMonthlyRate / (workHoursPerWeek * workWeeksPerMonth); // Worker rate per hour
         const overheadCosts = 26000; // Monthly overhead costs
