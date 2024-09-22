@@ -3,7 +3,7 @@
         const workHoursPerWeek = 8 * 6; // 10 hours per day, 6 days a week
         const workWeeksPerMonth = 4.33; // Average weeks per month
         const workerHourlyRate = workerMonthlyRate / (workHoursPerWeek * workWeeksPerMonth); // Worker rate per hour
-        const overheadCosts = 26000; // Monthly overhead costs
+        const overheadCosts = 30000; // Monthly overhead costs
         const totalMonthlyHours = workHoursPerWeek * workWeeksPerMonth * 7; // Total hours worked by all 7 workers
         const overheadHourlyRate = overheadCosts / totalMonthlyHours; // Overhead cost per hour for all workers
         const profitMargin = 0.2; // Profit margin (20%)
